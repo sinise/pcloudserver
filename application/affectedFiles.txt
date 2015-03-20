@@ -1,0 +1,17 @@
+?controller/LoginController.php
+?view/login/register.php
+
+?controller/RegistrationControler.php
+model/RegistrationModel.php
+view/_templates/header.php
+view/rpi/
+controller/RpiController.php
+model/RpiModel.php
+
+affectedFiles.txt
+
+view/_templates/footer.php
+view/_templates/header.php
+view/login/index.php
+
+
