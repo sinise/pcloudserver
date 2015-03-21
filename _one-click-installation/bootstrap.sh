@@ -1,9 +1,10 @@
+###### NOTE THAT INSERTING THE VAR DOMAINNAME INTO APACHE SERVER CONF IS NOT TESTET.
 #!/usr/bin/env bash
 
 # Use single quotes instead of double quotes to make it work with special-character passwords
-PASSWORD='12345678'
-PROJECTFOLDER='myproject'
-
+PASSWORD='BlackseaDeformation1'
+PROJECTFOLDER='cloudscreen'
+DOMAINNAME='*.cloudscreen.dk'
 # create project folder
 sudo mkdir "/var/www/html/${PROJECTFOLDER}"
 
@@ -29,6 +30,7 @@ sudo apt-get -y install phpmyadmin
 VHOST=$(cat <<EOF
 <VirtualHost *:80>
     DocumentRoot "/var/www/html/${PROJECTFOLDER}/public"
+    ServerName "$DOMAINNAME"
     <Directory "/var/www/html/${PROJECTFOLDER}/public">
         AllowOverride All
         Require all granted
@@ -58,7 +60,7 @@ sudo apt-get -y install php5-gd
 sudo apt-get -y install git
 
 # git clone HUGE
-sudo git clone https://github.com/panique/huge "/var/www/html/${PROJECTFOLDER}"
+sudo git clone https://github.com/sinise/pcloudserver.git "/var/www/html/${PROJECTFOLDER}"
 
 # install Composer
 curl -s https://getcomposer.org/installer | php
@@ -72,6 +74,7 @@ composer install --dev
 sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/${PROJECTFOLDER}/application/_installation/01-create-database.sql"
 sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/${PROJECTFOLDER}/application/_installation/02-create-table-users.sql"
 sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/${PROJECTFOLDER}/application/_installation/03-create-table-notes.sql"
+sudo mysql -h "localhost" -u "root" "-p${PASSWORD}" < "/var/www/html/${PROJECTFOLDER}/application/_installation/04-create-table-rpi-etc.sql"
 
 # writing rights to avatar folder
 sudo chmod 0777 -R "/var/www/html/${PROJECTFOLDER}/public/avatars"
