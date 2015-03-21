@@ -1,16 +1,16 @@
-DROP TABLE IF EXISTS rpi;
-DROP TABLE IF EXISTS userWanAsoc;
-DROP TABLE IF EXISTS userRpiAsoc;
-DROP TABLE IF EXISTS rpiStatus;
-DROP TABLE IF EXISTS commands;
+DROP TABLE IF EXISTS huge.rpi;
+DROP TABLE IF EXISTS huge.userWanAsoc;
+DROP TABLE IF EXISTS huge.userRpiAsoc;
+DROP TABLE IF EXISTS huge.rpiStatus;
+DROP TABLE IF EXISTS huge.commands;
 
-CREATE TABLE rpi(
+CREATE TABLE huge.rpi(
    mac            VARCHAR (17)   NOT NULL,
    creatTime      TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,    # Creation time
    PRIMARY KEY (mac)
 );
 
-CREATE TABLE userWanAsoc(
+CREATE TABLE huge.userWanAsoc(
    id             INT (11)       NOT NULL AUTO_INCREMENT,
    user_id        INT (11)       NOT NULL,
    wan            VARCHAR (15)   NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE userWanAsoc(
    PRIMARY KEY (id)
 );
 
-CREATE TABLE userRpiAsoc(
+CREATE TABLE huge.userRpiAsoc(
    id             INT (11)       NOT NULL AUTO_INCREMENT,
    user_id        INT (11)       NOT NULL,
    mac            VARCHAR (17)   NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE userRpiAsoc(
    PRIMARY KEY (id)
 );
 
-CREATE TABLE rpiStatus(
+CREATE TABLE huge.rpiStatus(
    id             INT            NOT NULL AUTO_INCREMENT,
    ip             VARCHAR (15)   NOT NULL,
    mac            VARCHAR (17)   NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE rpiStatus(
    PRIMARY KEY (id)
 );
 
-CREATE TABLE commands(
+CREATE TABLE huge.commands(
    id             INT            NOT NULL AUTO_INCREMENT,
    mac            VARCHAR (17)   NOT NULL,
    command        VARCHAR (8000) ,                                      # Shell command
