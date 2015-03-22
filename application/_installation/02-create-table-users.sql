@@ -26,5 +26,5 @@ INSERT INTO `huge`.`users` (`user_id`, `user_name`, `user_password_hash`, `user_
 `user_has_avatar`, `user_remember_me_token`, `user_creation_timestamp`, `user_last_login_timestamp`,
 `user_failed_logins`, `user_last_failed_login`, `user_activation_hash`, `user_password_reset_hash`,
 `user_password_reset_timestamp`, `user_provider_type`, `user_facebook_uid`) VALUES
-(1, 'demo', '$2y$10$OvprunjvKOOhM1h9bzMPs.vuwGIsOqZbw88rzSyGCTJTcE61g5WXi', 'demo@demo.com', 1, 1, 0, NULL, 1422205178,
-1422209189, 0, NULL, NULL, NULL, NULL, 'DEFAULT', NULL);
+(1, 'admin', '$2y$10$xt5jTScjB8.D/jodg7CXWeybjNJl4ySETK00Uk3opyLVExwLrOQEa', 'admin@lapela.dk', 1, 
+3, 0, NULL, 1422205178, 1422209189, 0, NULL, NULL, NULL, NULL, 'DEFAULT', NULL);

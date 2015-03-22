@@ -36,7 +36,7 @@ CREATE TABLE huge.rpiStatus(
    url            VARCHAR (2000) ,
    urlViaServer   SMALLINT       ,                                      # 0 = direct 1 =  via cloudscreen.dk 
    orientation    SMALLINT       NOT NULL,
-   lastMTansTime  VARCHAR (8)   ,
+   lastMTransTime  VARCHAR (8)   ,
    creatTime      TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,    # Creation time
    PRIMARY KEY (id)
 );

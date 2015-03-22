@@ -54,7 +54,7 @@ return array(
 	'DB_TYPE' => 'mysql',
 	'DB_HOST' => '127.0.0.1',
 	'DB_NAME' => 'huge',
-	'DB_USER' => 'root',
+	'DB_USER' => 'huge',
 	'DB_PASS' => 'BlackseaDeformation1',
 	'DB_PORT' => '3306',
 	'DB_CHARSET' => 'utf8',
