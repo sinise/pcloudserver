@@ -36,4 +36,16 @@ class ProfileController extends Controller
             Redirect::home();
         }
     }
+
+    public function userIpAsoc($user_id)
+    {
+        if (isset($user_id)) {
+            $this->View->render('profile/userIpAsoc', array(
+                'user' => UserModel::getPublicProfileOfUser($user_id))
+            );
+        } else {
+            Redirect::home();
+        }
+    }
+
 }

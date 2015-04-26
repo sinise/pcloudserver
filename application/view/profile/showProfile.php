@@ -22,7 +22,7 @@
                     </thead>
                     <tbody>
                         <tr class="<?= ($this->user->user_active == 0 ? 'inactive' : 'active'); ?>">
-                            <td>     <a href="<?= Config::get('URL') . 'profile/userRpiAsoc/' . $user->user_id; ?>"><?= $this->user->user_id?></a></td>
+                            <td>     <a href="<?= Config::get('URL') . 'profile/userIpAsoc/' . $user->user_id; ?>"><?= $this->user->user_id?></a></td>
 
                             <td class="avatar">
                                 <?php if (isset($this->user->user_avatar_link)) { ?>
