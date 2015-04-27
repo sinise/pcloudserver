@@ -14,7 +14,6 @@
                     <thead>
                     <tr>
                         <td>Id</td>
-                        <td>Avatar</td>
                         <td>Username</td>
                         <td>User's email</td>
                         <td>Activated ?</td>
@@ -22,13 +21,8 @@
                     </thead>
                     <tbody>
                         <tr class="<?= ($this->user->user_active == 0 ? 'inactive' : 'active'); ?>">
-                            <td>     <a href="<?= Config::get('URL') . 'profile/userIpAsoc/' . $user->user_id; ?>"><?= $this->user->user_id?></a></td>
+<td><a href="<?= Config::get('URL') . 'profile/userIpAsoc/' . $this->user->user_id; ?>"><?= $this->user->user_id?></a></td>
 
-                            <td class="avatar">
-                                <?php if (isset($this->user->user_avatar_link)) { ?>
-                                    <img src="<?= $this->user->user_avatar_link; ?>" />
-                                <?php } ?>
-                            </td>
                             <td><?= $this->user->user_name; ?></td>
                             <td><?= $this->user->user_email; ?></td>
                             <td><?= ($this->user->user_active == 0 ? 'No' : 'Yes'); ?></td>

@@ -52,6 +52,14 @@ CREATE TABLE huge.commands(
    PRIMARY KEY (id)
 );
 
+CREATE TABLE huge.userRpiAsoc(
+   id             INT (11)       NOT NULL AUTO_INCREMENT,
+   user_id        INT (11)       NOT NULL,
+   ip             VARCHAR (15)   NOT NULL,
+   creatTime      TIMESTAMP      NOT NULL DEFAULT CURRENT_TIMESTAMP,    # Creation time
+   PRIMARY KEY (id)
+);
+
 /*
 # insert sample information to members
 INSERT INTO members (FirstName, LastName, Email, Password) VALUES('Oscar', 'Roth Andersen', 'oscarrothandersen@gmail.com', 'passw0rd');
