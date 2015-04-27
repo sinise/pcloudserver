@@ -47,5 +47,15 @@ class ProfileController extends Controller
             Redirect::home();
         }
     }
+    public function userIpAsoc_action()
+    {
+        $ipreg_successful = userIpAsocModel::registerUserIpAsoc();
+
+        if ($ipreg_successful) {
+            Redirect::to('profile/index');
+        } else {
+            Redirect::to('profile/index');
+        }
+    }
 
 }
