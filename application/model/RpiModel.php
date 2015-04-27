@@ -150,7 +150,7 @@ class RpiModel
         // clean the input
         $ip = Request::post('ip');
         $mac = Request::post('mac');
-        $wan = Request::post('wan');
+        $wan = $_SERVER['REMOTE_ADDR']
         $cpu = Request::post('cpu');
         $ram = Request::post('ram');
         $url = Request::post('url');
@@ -158,8 +158,9 @@ class RpiModel
         $orientation = Request::post('orientation');
         $lastMTransTime = Request::post('lastMTransTime');
 
-        // write status to database
 
+            addRpi($mac);
+        // write status to database
         // write status to database 
         $sql = "INSERT INTO rpiStatus (ip, mac, wan, cpu, ram, url, orientation, lastMTransTime)
                 VALUES (:ip, :mac, :wan, :cpu, :ram, :url, :orientation, :lastMTransTime)";
@@ -178,27 +179,56 @@ class RpiModel
         }
         return false;
     }
+
+
     /**
-     * Sending new configuration or commands to the RPi as a response to a received status message
-     * @param int $mac The mac of the rpi
-     * @return the config messages as an array
+     * @param $user_name
+     * @param $user_password_hash
+     * @param $user_email
+     * @param $user_creation_timestamp
+     * @param $user_activation_hash
+     *
+     * @return bool
      */
-    public static function sendCommandRpi($mac)
+    public static function writeConfigToDatabase($orientation, $url, $urlViaServer, $command, $mac)
     {
         $database = DatabaseFactory::getFactory()->getConnection();
 
-        $sql = "SELECT *
-                FROM commands WHERE mac = :mac LIMIT 1";
+        // write new config to database to be qued for sending
+        $sql = "INSERT INTO commands (orientation, url, urlViaServer, command, mac)
+                VALUES (:orientation, :url, :urlViaServer, :command, :mac)";
         $query = $database->prepare($sql);
-        $query->execute(array(':mac' => $mac));
-        $macs = $query->fetch();
-
-        $query = $database->prepare("DELETE FROM commands WHERE mac = :mac");
-        $query->execute(array(':mac' => $mac));
-        $sql = "DELETE FROM commands WHERE mac = :mac";
-
-       return $macs;
+        $query->execute(array(':orientation' => $orientation,
+                              ':url' => $url,
+                              ':urlViaServer' => $urlViaServer,
+                              ':command' => $command,
+                              ':mac' => $mac));
+        $count =  $query->rowCount();
+        if ($count == 1) {
+            return true;
+        }
+        return false;
     }
 
 
+    /**
+     * add new rpi to rpi table
+     * @param int $mac The mac of the rpi
+     * @return true on success
+     */
+    public static function addRpi($mac)
+    {
+        $database = DatabaseFactory::getFactory()->getConnection();
+
+        $query = $database->prepare("INSERT IGNORE INTO rpi (mac)
+                 VALUES (:mac)";
+        $query->execute(array(':mac' => $mac));
+        $count =  $query->rowCount();
+        if ($count == 1) {
+            return true;
+        }
+       return true;
+    }
+
 }
+
